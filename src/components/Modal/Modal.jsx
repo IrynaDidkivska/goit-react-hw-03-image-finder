@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Overlay, StyledModal } from './Modal.styled';
-import { ImageGalleryItem } from 'components/ImageGallery/ImageGalleryItem/ImageGalleryItem';
+import PropTypes from 'prop-types';
 
 export class Modal extends Component {
   componentDidMount() {
@@ -33,3 +33,6 @@ export class Modal extends Component {
     );
   }
 }
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};

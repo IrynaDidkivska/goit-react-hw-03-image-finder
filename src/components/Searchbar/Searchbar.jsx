@@ -6,6 +6,7 @@ import {
   SearchFormInput,
 } from './Searchbar.styled';
 import { FcSearch } from 'react-icons/fc';
+import PropTypes from 'prop-types';
 
 export const Searchbar = ({ onSearchForm }) => {
   const onSubmit = e => {
@@ -36,4 +37,8 @@ export const Searchbar = ({ onSearchForm }) => {
       </SearchForm>
     </>
   );
+};
+
+Searchbar.propTypes = {
+  onSearchForm: PropTypes.func.isRequired,
 };
