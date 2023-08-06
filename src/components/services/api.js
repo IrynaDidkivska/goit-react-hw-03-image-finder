@@ -7,7 +7,6 @@ const options = {
   image_type: 'photo',
   orientation: 'horizontal',
   safeSearch: true,
-  per_page: 30,
 };
 
 export const fetchImg = async params => {
