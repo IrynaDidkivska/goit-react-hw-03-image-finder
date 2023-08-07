@@ -15,7 +15,7 @@ export const ImageGalleryItem = ({ el, onClickImage }) => {
   );
 };
 ImageGalleryItem.propTypes = {
-  el: PropTypes.arrayOf({
+  el: PropTypes.shape({
     webformatURL: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
     largeImageURL: PropTypes.string.isRequired,

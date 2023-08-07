@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { Loader } from './Loader/Loader';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { fetchImg } from './services/api';
+import { fetchImg } from '../services/api';
 import { toast } from 'react-toastify';
 import { LargeImg, Wrapper } from './App.styled';
 import { Button } from './Button/Button';
@@ -28,20 +28,24 @@ export class App extends Component {
         this.setState({ loading: true });
         const { totalHits, hits } = await fetchImg({
           q: query,
-          page: page,
-          per_page: per_page,
+          page,
+          per_page,
         });
+        if (query === prevState.query) {
+          toast.success(
+            `Hooray! We found ${totalHits - this.state.images.length} images.`
+          );
+        }
+
         if (!totalHits) {
           toast.warn(
             'Sorry, there are no images matching your search query. Please try again.'
           );
-        } else {
-          toast.success(`Hooray! We found ${totalHits} images.`);
         }
         this.setState(prev => ({
           page,
           images: [...prev.images, ...hits],
-          totalHits: totalHits,
+          totalHits,
         }));
       } catch (error) {
       } finally {
@@ -70,7 +74,6 @@ export class App extends Component {
       largeImageURL: largeImageURL,
       isOpen: true,
     });
-    console.log('click on img ');
   };
 
   toggleModal = () =>
